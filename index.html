@@ -1096,8 +1096,9 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-brand">
-                        <div class="footer-brand-icon" aria-hidden="true">
-                            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button class="footer-brand-icon" id="penguinTrigger" aria-hidden="true" style="background:var(--primary);border-radius:var(--radius-sm);border:none;cursor:default;padding:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <ellipse cx="16" cy="20" rx="10" ry="9" fill="#F8F9FA" stroke="#DADCE0" stroke-width="1"/>
                                 <ellipse cx="16" cy="21" rx="6" ry="7" fill="#FFFFFF"/>
                                 <circle cx="16" cy="10" r="7" fill="#F8F9FA" stroke="#DADCE0" stroke-width="1"/>
@@ -1108,7 +1109,9 @@
                                 <path d="M10 5 Q16 2 22 5 L22 7 Q16 5 10 7 Z" fill="#1A73E8"/>
                                 <rect x="9" y="6.5" width="14" height="2" rx="1" fill="#1557B0"/>
                             </svg>
-                        </div>
+    </svg>
+</button>
+                      
                         <div class="footer-brand-text">
                             אריאל מערכות
                             <span>מיזוג וקירור</span>
@@ -1531,8 +1534,34 @@
             }).join('');
         }
 
-        adminTrigger.addEventListener('click', () => { renderAdminTable(); adminPanel.classList.add('active'); document.body.style.overflow = 'hidden'; });
-        adminClose.addEventListener('click', () => { adminPanel.classList.remove('active'); document.body.style.overflow = ''; });
+// Admin - penguin trigger (3 clicks + password)
+const penguinTrigger = document.getElementById('penguinTrigger');
+let penguinClickCount = 0;
+let penguinTimer = null;
+
+penguinTrigger.addEventListener('click', () => {
+    penguinClickCount++;
+    clearTimeout(penguinTimer);
+    penguinTimer = setTimeout(() => { penguinClickCount = 0; }, 2000);
+
+    if (penguinClickCount >= 3) {
+        penguinClickCount = 0;
+        clearTimeout(penguinTimer);
+        const pwd = prompt('🔐 סיסמת מנהל:');
+        if (pwd === 'A12345') {
+            renderAdminTable();
+            adminPanel.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else if (pwd !== null) {
+            alert('סיסמה שגויה');
+        }
+    }
+});
+
+adminClose.addEventListener('click', () => {
+    adminPanel.classList.remove('active');
+    document.body.style.overflow = '';
+});        adminClose.addEventListener('click', () => { adminPanel.classList.remove('active'); document.body.style.overflow = ''; });
 
         // ============================================
         // SMOOTH SCROLL
