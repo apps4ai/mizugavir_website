@@ -501,30 +501,9 @@
             <div class="app-bar-left">
                 <a href="#" class="app-bar-logo" aria-label="אריאל מערכות מיזוג וקירור - דף הבית">
                     <!-- Minimal Penguin Logo -->
-                    <div class="app-bar-logo-icon" aria-hidden="true">
-                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Body -->
-                            <ellipse cx="16" cy="20" rx="10" ry="9" fill="#F8F9FA" stroke="#DADCE0" stroke-width="1"/>
-                            <!-- Belly -->
-                            <ellipse cx="16" cy="21" rx="6" ry="7" fill="#FFFFFF"/>
-                            <!-- Head -->
-                            <circle cx="16" cy="10" r="7" fill="#F8F9FA" stroke="#DADCE0" stroke-width="1"/>
-                            <!-- Face -->
-                            <ellipse cx="16" cy="11" rx="4.5" ry="3.5" fill="#FFFFFF"/>
-                            <!-- Eyes -->
-                            <circle cx="13.5" cy="9.5" r="1.2" fill="#202124"/>
-                            <circle cx="18.5" cy="9.5" r="1.2" fill="#202124"/>
-                            <!-- Beak -->
-                            <path d="M14.5 12 L16 14 L17.5 12 Z" fill="#F9AB00"/>
-                            <!-- Hat -->
-                            <path d="M10 5 Q16 2 22 5 L22 7 Q16 5 10 7 Z" fill="#1A73E8"/>
-                            <rect x="9" y="6.5" width="14" height="2" rx="1" fill="#1557B0"/>
-                            <!-- Wrench -->
-                            <rect x="22" y="16" width="1.5" height="8" rx="0.75" fill="#1A73E8" transform="rotate(-30 22 16)"/>
-                            <circle cx="22.5" cy="15.5" r="2" fill="none" stroke="#1A73E8" stroke-width="1.2"/>
-                            <circle cx="22.5" cy="24.5" r="2" fill="none" stroke="#1A73E8" stroke-width="1.2"/>
-                        </svg>
-                    </div>
+                   <div class="app-bar-logo-icon" aria-hidden="true">
+    <img src="images/LOGO-ARIEL.jpg" alt="אריאל מערכות" style="width:100%;height:100%;object-fit:contain;">
+</div>
                     <span class="app-bar-logo-text">אריאל מערכות</span>
                 </a>
             </div>
@@ -1607,5 +1586,154 @@
 
     })();
     </script>
+    <!-- ===== ACCESSIBILITY WIDGET ===== -->
+<style>
+  #a11y-btn {
+    position: fixed; bottom: 80px; left: 14px; z-index: 9999;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: #1A73E8; color: #fff; border: none; cursor: pointer;
+    font-size: 1.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  #a11y-btn:hover { background: #1557B0; }
+  #a11y-panel {
+    display: none; position: fixed; bottom: 138px; left: 14px; z-index: 9999;
+    background: #fff; border: 1px solid #DADCE0; border-radius: 14px;
+    padding: 16px; width: 220px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    font-family: 'Heebo', sans-serif; direction: rtl;
+  }
+  #a11y-panel.open { display: block; }
+  #a11y-panel h3 { font-size: 0.8rem; font-weight: 700; color: #5F6368; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .a11y-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .a11y-label { font-size: 0.88rem; font-weight: 500; color: #202124; }
+  .a11y-toggle {
+    width: 40px; height: 22px; border-radius: 999px; border: none; cursor: pointer;
+    background: #DADCE0; position: relative; transition: background 0.2s; flex-shrink: 0;
+  }
+  .a11y-toggle.on { background: #1A73E8; }
+  .a11y-toggle::after {
+    content: ''; position: absolute; top: 3px; right: 3px;
+    width: 16px; height: 16px; border-radius: 50%; background: #fff;
+    transition: transform 0.2s;
+  }
+  .a11y-toggle.on::after { transform: translateX(-18px); }
+  .a11y-reset {
+    width: 100%; margin-top: 10px; padding: 8px; border-radius: 8px;
+    border: 1px solid #DADCE0; background: #F8F9FA; font-family: 'Heebo', sans-serif;
+    font-size: 0.85rem; cursor: pointer; color: #202124; font-weight: 600;
+  }
+  .a11y-reset:hover { background: #E8F0FE; color: #1A73E8; }
+  @media (min-width: 768px) {
+    #a11y-btn { bottom: 20px; }
+    #a11y-panel { bottom: 78px; }
+  }
+</style>
+
+<button id="a11y-btn" aria-label="תפריט נגישות" aria-expanded="false" aria-controls="a11y-panel">♿</button>
+<div id="a11y-panel" role="dialog" aria-label="הגדרות נגישות">
+  <h3>נגישות</h3>
+  <div class="a11y-row">
+    <span class="a11y-label">הגדל טקסט</span>
+    <button class="a11y-toggle" id="a11y-big" aria-pressed="false" aria-label="הגדל טקסט"></button>
+  </div>
+  <div class="a11y-row">
+    <span class="a11y-label">הקטן טקסט</span>
+    <button class="a11y-toggle" id="a11y-small" aria-pressed="false" aria-label="הקטן טקסט"></button>
+  </div>
+  <div class="a11y-row">
+    <span class="a11y-label">ניגודיות גבוהה</span>
+    <button class="a11y-toggle" id="a11y-contrast" aria-pressed="false" aria-label="ניגודיות גבוהה"></button>
+  </div>
+  <div class="a11y-row">
+    <span class="a11y-label">ביטול אנימציות</span>
+    <button class="a11y-toggle" id="a11y-motion" aria-pressed="false" aria-label="ביטול אנימציות"></button>
+  </div>
+  <button class="a11y-reset" id="a11y-reset">↺ איפוס הכל</button>
+</div>
+
+<script>
+(function(){
+  const html = document.documentElement;
+  const btn = document.getElementById('a11y-btn');
+  const panel = document.getElementById('a11y-panel');
+  const toggles = {
+    big:      { el: document.getElementById('a11y-big'),      class: 'a11y--big-text' },
+    small:    { el: document.getElementById('a11y-small'),    class: 'a11y--small-text' },
+    contrast: { el: document.getElementById('a11y-contrast'), class: 'a11y--contrast' },
+    motion:   { el: document.getElementById('a11y-motion'),   class: 'a11y--no-motion' }
+  };
+
+  // Load saved
+  Object.keys(toggles).forEach(key => {
+    if (localStorage.getItem('a11y_' + key) === '1') {
+      html.classList.add(toggles[key].class);
+      toggles[key].el.classList.add('on');
+      toggles[key].el.setAttribute('aria-pressed', 'true');
+    }
+  });
+
+  // Open/close panel
+  btn.addEventListener('click', () => {
+    const isOpen = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!btn.contains(e.target) && !panel.contains(e.target)) {
+      panel.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Toggle logic
+  Object.keys(toggles).forEach(key => {
+    toggles[key].el.addEventListener('click', () => {
+      const isOn = toggles[key].el.classList.toggle('on');
+      toggles[key].el.setAttribute('aria-pressed', isOn);
+      html.classList.toggle(toggles[key].class, isOn);
+      localStorage.setItem('a11y_' + key, isOn ? '1' : '0');
+      // big/small are mutually exclusive
+      if (key === 'big' && isOn) {
+        toggles.small.el.classList.remove('on');
+        toggles.small.el.setAttribute('aria-pressed', 'false');
+        html.classList.remove(toggles.small.class);
+        localStorage.removeItem('a11y_small');
+      }
+      if (key === 'small' && isOn) {
+        toggles.big.el.classList.remove('on');
+        toggles.big.el.setAttribute('aria-pressed', 'false');
+        html.classList.remove(toggles.big.class);
+        localStorage.removeItem('a11y_big');
+      }
+    });
+  });
+
+  // Reset
+  document.getElementById('a11y-reset').addEventListener('click', () => {
+    Object.keys(toggles).forEach(key => {
+      toggles[key].el.classList.remove('on');
+      toggles[key].el.setAttribute('aria-pressed', 'false');
+      html.classList.remove(toggles[key].class);
+      localStorage.removeItem('a11y_' + key);
+    });
+  });
+
+  // CSS classes effect
+  const styleTag = document.createElement('style');
+  styleTag.textContent = `
+    .a11y--big-text { font-size: 120% !important; }
+    .a11y--small-text { font-size: 85% !important; }
+    .a11y--contrast { filter: contrast(1.6) !important; }
+    .a11y--no-motion *, .a11y--no-motion *::before, .a11y--no-motion *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  `;
+  document.head.appendChild(styleTag);
+})();
+</script>
+<!-- ===== END ACCESSIBILITY WIDGET ===== -->
 </body>
 </html>
